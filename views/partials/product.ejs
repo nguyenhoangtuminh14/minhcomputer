@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <style>
+        .product.spad {
+    padding: 60px 0;
+}
+
+.product__image {
+    margin-bottom: 30px; /* Thêm khoảng cách dưới hình ảnh */
+}
+
+.product-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.product__price {
+    font-size: 1.5rem;
+    color: #28a745; /* Màu xanh lá cho giá */
+    margin-bottom: 15px;
+}
+
+.product__description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.add-to-cart {
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3; /* Màu xanh dương đậm khi hover */
+}
+        img {
+            max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của khung */
+            height: auto; /* Giữ tỷ lệ khung hình */
+        }
+        .image-gallery img {
+            width: 100px; /* Kích thước hình ảnh khác */
+            margin-right: 5px;
+        }
+    
+        .product__discount__item {
+    border: 1px solid #ddd; /* Thêm viền cho sản phẩm */
+    border-radius: 5px; /* Bo góc */
+    overflow: hidden; /* Đảm bảo không có phần tử nào tràn ra ngoài */
+    transition: transform 0.3s; /* Hiệu ứng chuyển động khi hover */
+}
+
+.product__discount__item:hover {
+    transform: scale(1.05); /* Phóng to sản phẩm khi hover */
+}
+
+.product__discount__item__pic {
+    position: relative; /* Để định vị các phần tử con */
+}
+.category-title {
+    font-size: 24px; /* Kích thước chữ lớn hơn */
+    font-weight: bold; /* Chữ đậm */
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+    color: #333; /* Màu sắc chữ */
+}
+
+.product__discount__item {
+    border: 1px solid #e1e1e1; /* Đường viền nhẹ */
+    border-radius: 8px; /* Bo góc */
+    overflow: hidden; /* Ẩn phần thừa */
+    transition: transform 0.3s; /* Hiệu ứng chuyển động */
+}
+
+.product__discount__item:hover {
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+
+.category-label {
+    display: block; /* Hiển thị dưới dạng block */
+    font-size: 14px; /* Kích thước chữ nhỏ hơn */
+    color: #888; /* Màu sắc chữ nhạt hơn */
+    margin-top: 5px; /* Khoảng cách trên */
+}
+.product__discount__item {
+    display: flex; /* Sử dụng flexbox để căn chỉnh */
+    flex-direction: column; /* Căn chỉnh theo chiều dọc */
+    height: 100%; /* Đảm bảo chiều cao 100% */
+    border: 1px solid #e1e1e1; /* Đường viền nhẹ */
+    border-radius: 8px; /* Bo góc */
+    overflow: hidden; /* Ẩn phần thừa */
+    transition: transform 0.3s; /* Hiệu ứng chuyển động */
+}
+
+.product__discount__item:hover {
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+
+.product__discount__item__pic {
+    flex-grow: 1; /* Chiếm không gian còn lại */
+    position: relative; /* Để sử dụng cho các phần tử con */
+}
+
+.product__discount__item__text {
+    padding: 15px; /* Thêm khoảng cách cho phần thông tin sản phẩm */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+.category-title {
+    font-size: 24px; /* Kích thước chữ lớn hơn */
+    font-weight: bold; /* Chữ đậm */
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+    color: #333; /* Màu sắc chữ */
+}
+
+.category-label {
+    display: block; /* Hiển thị dưới dạng block */
+    font-size: 14px; /* Kích thước chữ nhỏ hơn */
+    color: #888; /* Màu sắc chữ nhạt hơn */
+    margin-top: 5px; /* Khoảng cách trên */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    
+
+   <!-- header -->
+   <%- include('header', { user: user }) %>
+   <!-- header -->
+
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Sản Phẩm</h2>
+                        <div class="breadcrumb__option">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 text-center">
+                    <div class="product__image">
+                        <img src="/img/product/<%= product.image %>" alt="<%= product.name %>" class="img-fluid rounded shadow-sm" onerror="this.onerror=null; this.src='img/product/default.jpg';">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__info">
+                        <h1 class="display-4"><%= product.name %></h1>
+                        <p class="lead"><strong><%= product.formattedPrice %></strong></p>
+                        <p><strong>Mô tả:</strong></p>
+                        <p><%= product.description %></p>
+                        <form action="/cart/add" method="POST" class="mt-4">
+                            <input type="hidden" name="product_id" value="<%= product.product_id %>">
+                            <div class="form-group d-flex align-items-center">
+                                <input type="number" name="quantity" value="1" min="1" class="form-control mr-2" style="width: 80px;">
+                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+    <!-- footer -->
+    <%- include('footer') %>
+    <!-- footer -->
+
+    <!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>
+   
+</head>
+
+    

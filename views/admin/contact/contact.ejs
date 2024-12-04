@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="/ad_assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/ad_assets/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/ad_assets/dist/css/skins/_all-skins.min.css">
+</head>
+<body class="hold-transition skin-blue ">
+<div class="wrapper">
+
+  <header class="main-header">
+    <a href="/admin" class="logo">
+      <span class="logo-lg"><b>Admin</b></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+        </ul>
+    </div>
+    </nav>
+  </header>
+
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Quản lý Tài khoản</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admins"><i class="fa fa-circle-o"></i> Admin</a></li>
+            <li><a href="/admin/users"><i class="fa fa-circle-o"></i> Người dùng</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Bài Viết</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Thêm bài viết</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Danh sách bài viết</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i> <span>Sản Phẩm</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/products/add"><i class="fa fa-circle-o"></i> Thêm Sản Phẩm</a></li>
+            <li><a href="/admin/products"><i class="fa fa-circle-o"></i> Tất cả sản phẩm</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/admin/orders">
+            <i class="fa fa-shopping-cart"></i> <span>Đơn Hàng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/contact">
+            <i class="fa fa-envelope"></i> <span>Phản Hồi</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <div class="container mt-5">
+      <h2 class="mb-4 text-center">Quản Lý Liên Hệ</h2>
+  
+      <% if (contacts.length === 0) { %>
+          <div class="alert alert-info" role="alert">
+              Hiện tại không có liên hệ nào.
+          </div>
+      <% } else { %>
+          <table class="table table-striped table-hover">
+              <thead class="thead-dark">
+                  <tr>
+                      <th>Tên</th>
+                      <th>Email</th>
+                      <th>Tin Nhắn</th>
+                      <th>Ngày Gửi</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% contacts.forEach(contact => { %>
+                      <tr>
+                          <td><%= contact.name %></td>
+                          <td><%= contact.email %></td>
+                          <td><%= contact.message %></td>
+                          <td><%= new Date(contact.created_at).toLocaleString() %></td>
+                      </tr>
+                  <% }); %>
+              </tbody>
+          </table>
+      <% } %>
+  </div>
+  </div>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.3
+    </div>
+    <strong>Copyright &copy; 2024 <a href="#">nguyenhoangtuminh14@gmail.com</a>.</strong> 
+  </footer>
+
+  <div class="control-sidebar-bg"></div>
+</div>
+
+<script src="/ad_assets/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="/ad_assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/ad_assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/ad_assets/plugins/fastclick/fastclick.js"></script>
+<script src="/ad_assets/dist/js/app.min.js"></script>
+<script src="/ad_assets/dist/js/demo.js"></script>
+</body>
+</html>

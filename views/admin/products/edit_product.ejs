@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="/ad_assets/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/ad_assets/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="/ad_assets/dist/css/skins/_all-skins.min.css">
+</head>
+<body class="hold-transition skin-blue ">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="/admin" class="logo">
+      
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Admin</b></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <!-- User Account: style can be found in dropdown.less -->
+            
+            <!-- Control Sidebar Toggle Button -->
+        </ul>
+    </div>
+    </nav>
+  </header>
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+     
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Quản lý Tài khoản</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admins"><i class="fa fa-circle-o"></i> Admin</a></li>
+            <li><a href="/admin/users"><i class="fa fa-circle-o"></i> Người dùng</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Bài Viết</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Thêm bbài viết</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> danh sách bài viết</a></li>
+            
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i> <span>Sản Phẩm</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/products/add"><i class="fa fa-circle-o"></i> Thêm Sản Phẩm</a></li>
+            <li><a href="/admin/products"><i class="fa fa-circle-o"></i> Tất cả sản phẩm</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/admin/orders">
+            <i class="fa fa-shopping-cart"></i> <span>Đơn Hàng</span>
+            
+          </a>
+        </li>
+        <li>
+          <a href="/admin/contact">
+            <i class="fa fa-envelope"></i> <span>Phản Hồi</span>
+            
+          </a>
+        </li>
+        
+        
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- =============================================== -->
+    <div class="content">
+      <div class="container">
+          <h1 class="text-center my-4">Sửa Sản Phẩm</h1>
+          <form action="/admin/products/edit/<%= product.product_id %>" method="POST" enctype="multipart/form-data">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="name">Tên sản phẩm</label>
+                          <input type="text" id="name" name="name" class="form-control" value="<%= product.name %>" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="description">Mô tả sản phẩm</label>
+                          <textarea id="description" name="description" class="form-control" rows="4" required><%= product.description %></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label for="price">Giá sản phẩm (VNĐ)</label>
+                          <input type="number" id="price" name="price" class="form-control" value="<%= product.price %>" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="category_id">Danh mục sản phẩm</label>
+                          <select id="category_id" name="category_id" class="form-control" required>
+                              <% categories.forEach(category => { %>
+                                  <option value="<%= category.id %>" <%= category.id === product.category_id ? 'selected' : '' %>><%= category.name %></option>
+                              <% }); %>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="image">Chọn hình ảnh sản phẩm</label>
+                          <input type="file" id="image" name="image" class="form-control-file" required> <!-- Chỉ cần một file -->
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <h5>Hình ảnh hiện tại:</h5>
+                      <div class="product-images">
+                          <% if (product.image) { %>
+                              <img src="/img/product/<%= product.image %>" alt="<%= product.name %>" class="img-fluid rounded mb-2">
+                          <% } else { %>
+                              <p>Không có hình ảnh cho sản phẩm này.</p>
+                          <% } %>
+                      </div>
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-success btn-block mt-4">Cập nhật sản phẩm</button>
+              <a href="/admin/products" class="btn btn-secondary btn-block mt-2">Trở về danh sách sản phẩm</a>
+          </form>
+      </div>
+  </div>
+    <!-- =============================================== -->
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.3
+    </div>
+    <strong>Copyright &copy; 2024 <a href="#">nguyenhoangtuminh14@gmail.com</a>.</strong> 
+  </footer>
+
+  <!-- Control Sidebar -->
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.0 -->
+<script src="/ad_assets/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="/ad_assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/ad_assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/ad_assets/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/ad_assets/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/ad_assets/dist/js/demo.js"></script>
+</body>
+</html>

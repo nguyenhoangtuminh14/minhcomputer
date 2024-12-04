@@ -1,0 +1,157 @@
+-----------------------------------------------------------
+                     CƠ SỞ DỮ LIỆU
+-----------------------------------------------------------
+
+Tên cơ sở dữ liệu: computers
+
+Mô tả: Cơ sở dữ liệu này được thiết kế để quản lý thông tin về người dùng, sản phẩm, đơn hàng, bình luận, liên hệ và tin tức trong dự án.
+
+-----------------------------------------------------------
+                     CÁC BẢNG TRONG CSDL
+-----------------------------------------------------------
+
+1. Bảng `users`
+   - **Mô tả**: Lưu trữ thông tin người dùng đăng ký trên hệ thống.
+   - **Các trường**:
+     - `user_id`: INT (Khóa chính, tự động tăng)
+     - `name`: VARCHAR(255) (Tên người dùng)
+     - `email`: VARCHAR(255) (Email người dùng, duy nhất)
+     - `password`: VARCHAR(255) (Mật khẩu người dùng)
+     - `order_count`: INT (Số lượng đơn hàng đã đặt)
+     - `comment_count`: INT (Số lượng bình luận đã gửi)
+     - `contact_count`: INT (Số lượng liên hệ đã gửi)
+     - `created_at`: TIMESTAMP (Thời gian đăng ký)
+
+2. Bảng `admins`
+   - **Mô tả**: Lưu trữ thông tin quản trị viên của hệ thống.
+   - **Các trường**:
+     - `admin_id`: INT (Khóa chính, tự động tăng)
+     - `name`: VARCHAR(255) (Tên quản trị viên)
+     - `email`: VARCHAR(255) (Email quản trị viên, duy nhất)
+     - `password`: VARCHAR(255) (Mật khẩu quản trị viên)
+     - `created_at`: TIMESTAMP (Thời gian tạo tài khoản)
+
+3. Bảng `product_catalog`
+   - **Mô tả**: Lưu trữ các danh mục sản phẩm.
+   - **Các trường**:
+     - `id`: INT (Khóa chính, tự động tăng)
+     - `name`: VARCHAR(255) (Tên danh mục)
+     - `product_count`: INT (Số lượng sản phẩm trong danh mục)
+
+4. Bảng `products`
+   - **Mô tả**: Lưu trữ thông tin sản phẩm.
+   - **Các trường**:
+     - `product_id`: INT (Khóa chính, tự động tăng)
+     - `name`: VARCHAR(255) (Tên sản phẩm)
+     - `description`: TEXT (Mô tả sản phẩm)
+     - `price`: DECIMAL(10, 2) (Giá sản phẩm)
+     - `created_at`: TIMESTAMP (Thời gian tạo sản phẩm)
+     - `comment_count`: INT (Số lượng bình luận của sản phẩm)
+     - `image`: VARCHAR(255) (Tên hình ảnh)
+
+5. Bảng `orders`
+   - **Mô tả**: Lưu trữ thông tin đơn hàng của người dùng.
+   - **Các trường**:
+     - `order_id`: INT (Khóa chính, tự động tăng)
+     - `user_id`: INT (Khóa ngoại từ bảng `users`, ID người đặt hàng)
+     - `total_amount`: DECIMAL(10, 2) (Tổng số tiền của đơn hàng)
+     - `order_date`: TIMESTAMP (Thời gian đặt hàng)
+     - `status`: ENUM('pending', 'completed', 'canceled') (Trạng thái đơn hàng)
+
+6. Bảng `order_items`
+   - **Mô tả**: Lưu trữ thông tin chi tiết sản phẩm trong từng đơn hàng.
+   - **Các trường**:
+     - `order_item_id`: INT (Khóa chính, tự động tăng)
+     - `order_id`: INT (Khóa ngoại từ bảng `orders`, ID đơn hàng)
+     - `product_id`: INT (Khóa ngoại từ bảng `products`, ID sản phẩm)
+     - `quantity`: INT (Số lượng sản phẩm trong đơn hàng)
+     - `price`: DECIMAL(10, 2) (Giá sản phẩm tại thời điểm đặt hàng)
+
+7. Bảng `comments`
+   - **Mô tả**: Lưu trữ bình luận của người dùng về sản phẩm.
+   - **Các trường**:
+     - `comment_id`: INT (Khóa chính, tự động tăng)
+     - `product_id`: INT (Khóa ngoại từ bảng `products`, ID sản phẩm được bình luận)
+     - `user_id`: INT (Khóa ngoại từ bảng `users`, ID người dùng đã bình luận)
+     - `content`: TEXT (Nội dung bình luận)
+     - `created_at`: TIMESTAMP (Thời gian bình luận)
+
+8. Bảng `contact`
+   - **Mô tả**: Lưu trữ thông tin liên hệ từ người dùng.
+   - **Các trường**:
+     - `contact_id`: INT (Khóa chính, tự động tăng)
+     - `user_id`: INT (Khóa ngoại từ bảng `users`, ID người gửi liên hệ, có thể NULL nếu không có tài khoản)
+     - `name`: VARCHAR(255) (Tên người gửi)
+     - `email`: VARCHAR(255) (Email người gửi)
+     - `message`: TEXT (Nội dung tin nhắn)
+     - `created_at`: TIMESTAMP (Thời gian gửi liên hệ)
+
+9. Bảng `news`
+   - **Mô tả**: Lưu trữ thông tin về các bài viết tin tức.
+   - **Các trường**:
+     - `news_id`: INT (Khóa chính, tự động tăng)
+     - `title`: VARCHAR(255) (Tiêu đề bài viết)
+     - `content`: TEXT (Nội dung bài viết)
+     - `created_at`: TIMESTAMP (Thời gian tạo bài viết)
+
+10. Bảng `cart`
+    - **Mô tả**: Lưu trữ thông tin về giỏ hàng của người dùng.
+    - **Các trường**:
+      - `cart_id`: INT (Khóa chính, tự động tăng)
+      - `user_id`: INT (Khóa ngoại từ bảng `users`, ID người dùng)
+      - `product_id`: INT (Khóa ngoại từ bảng `products`, ID sản phẩm)
+      - `quantity`: INT (Số lượng sản phẩm trong giỏ hàng)
+      - `created_at`: TIMESTAMP (Thời gian thêm sản phẩm vào giỏ hàng)
+
+     
+
+-----------------------------------------------------------
+                     CÂY QUAN HỆ CÁC BẢNG
+-----------------------------------------------------------
+
+- **users**
+  - Có mối quan hệ một-nhiều với bảng `orders` (mỗi người dùng có thể có nhiều đơn hàng).
+  - Có mối quan hệ một-nhiều với bảng `comments` (mỗi người dùng có thể gửi nhiều bình luận).
+  - Có mối quan hệ một-nhiều với bảng `contact` (mỗi người dùng có thể gửi nhiều liên hệ).
+  - Có mối quan hệ một-nhiều với bảng `cart` (mỗi người dùng có thể có nhiều sản phẩm trong giỏ hàng).
+  
+
+- **admins**
+  - Có thể quản lý nhiều sản phẩm và bình luận, nhưng không có mối quan hệ trực tiếp với các bảng khác trong thiết kế hiện tại.
+  
+
+- **product_catalog**
+  - Có mối quan hệ một-nhiều với bảng `products` (mỗi danh mục có thể chứa nhiều sản phẩm).
+
+- **products**
+  - Có mối quan hệ nhiều-một với bảng `product_catalog` (mỗi sản phẩm thuộc về một danh mục).
+  - Có mối quan hệ một-nhiều với bảng `comments` (mỗi sản phẩm có thể có nhiều bình luận).
+  - Có mối quan hệ một-nhiều với bảng `order_items` (mỗi sản phẩm có thể xuất hiện trong nhiều đơn hàng).
+  - Có mối quan hệ một-nhiều với bảng `cart` (mỗi sản phẩm có thể có trong nhiều giỏ hàng).
+
+- **orders**
+  - Có mối quan hệ một-nhiều với bảng `order_items` (mỗi đơn hàng có thể chứa nhiều sản phẩm).
+  - Có mối quan hệ nhiều-một với bảng `users` (mỗi đơn hàng thuộc về một người dùng).
+
+- **order_items**
+  - Có mối quan hệ nhiều-một với bảng `orders` (mỗi mục trong đơn hàng thuộc về một đơn hàng).
+  - Có mối quan hệ nhiều-một với bảng `products` (mỗi mục trong đơn hàng thuộc về một sản phẩm).
+
+- **comments**
+  - Có mối quan hệ nhiều-một với bảng `products` (mỗi bình luận thuộc về một sản phẩm).
+  - Có mối quan hệ nhiều-một với bảng `users` (mỗi bình luận được gửi bởi một người dùng).
+
+- **contact**
+  - Có mối quan hệ nhiều-một với bảng `users` (mỗi liên hệ có thể được gửi bởi một người dùng, nhưng không bắt buộc phải có tài khoản).
+
+- **cart**
+  - Có mối quan hệ nhiều-một với bảng `users` (mỗi giỏ hàng thuộc về một người dùng).
+  - Có mối quan hệ nhiều-một với bảng `products` (mỗi sản phẩm trong giỏ hàng thuộc về một sản phẩm).
+
+-----------------------------------------------------------
+                     KẾT LUẬN
+-----------------------------------------------------------
+
+Cơ sở dữ liệu `computers` được thiết kế để quản lý thông tin liên quan đến người dùng, sản phẩm, đơn hàng, bình luận, liên hệ và tin tức trong một ứng dụng thương mại điện tử. Các bảng được liên kết với nhau thông qua các khóa ngoại, cho phép truy xuất và quản lý dữ liệu một cách hiệu quả.
+
+Cấu trúc cơ sở dữ liệu này hỗ trợ các chức năng như quản lý người dùng, quản lý sản phẩm, theo dõi đơn hàng, xử lý bình luận, và quản lý liên hệ cũng như tin tức, tạo điều kiện cho một trải nghiệm thương mại điện tử toàn diện.

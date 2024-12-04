@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <style>
+        .product.spad {
+    padding: 60px 0;
+}
+
+.product__image {
+    margin-bottom: 30px; /* Thêm khoảng cách dưới hình ảnh */
+}
+
+.product-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.product__price {
+    font-size: 1.5rem;
+    color: #28a745; /* Màu xanh lá cho giá */
+    margin-bottom: 15px;
+}
+
+.product__description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.add-to-cart {
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3; /* Màu xanh dương đậm khi hover */
+}
+        img {
+            max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của khung */
+            height: auto; /* Giữ tỷ lệ khung hình */
+        }
+        .image-gallery img {
+            width: 100px; /* Kích thước hình ảnh khác */
+            margin-right: 5px;
+        }
+    
+        .product__discount__item {
+    border: 1px solid #ddd; /* Thêm viền cho sản phẩm */
+    border-radius: 5px; /* Bo góc */
+    overflow: hidden; /* Đảm bảo không có phần tử nào tràn ra ngoài */
+    transition: transform 0.3s; /* Hiệu ứng chuyển động khi hover */
+}
+
+.product__discount__item:hover {
+    transform: scale(1.05); /* Phóng to sản phẩm khi hover */
+}
+
+.product__discount__item__pic {
+    position: relative; /* Để định vị các phần tử con */
+}
+.category-title {
+    font-size: 24px; /* Kích thước chữ lớn hơn */
+    font-weight: bold; /* Chữ đậm */
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+    color: #333; /* Màu sắc chữ */
+}
+
+.product__discount__item {
+    border: 1px solid #e1e1e1; /* Đường viền nhẹ */
+    border-radius: 8px; /* Bo góc */
+    overflow: hidden; /* Ẩn phần thừa */
+    transition: transform 0.3s; /* Hiệu ứng chuyển động */
+}
+
+.product__discount__item:hover {
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+
+.category-label {
+    display: block; /* Hiển thị dưới dạng block */
+    font-size: 14px; /* Kích thước chữ nhỏ hơn */
+    color: #888; /* Màu sắc chữ nhạt hơn */
+    margin-top: 5px; /* Khoảng cách trên */
+}
+.product__discount__item {
+    display: flex; /* Sử dụng flexbox để căn chỉnh */
+    flex-direction: column; /* Căn chỉnh theo chiều dọc */
+    height: 100%; /* Đảm bảo chiều cao 100% */
+    border: 1px solid #e1e1e1; /* Đường viền nhẹ */
+    border-radius: 8px; /* Bo góc */
+    overflow: hidden; /* Ẩn phần thừa */
+    transition: transform 0.3s; /* Hiệu ứng chuyển động */
+}
+
+.product__discount__item:hover {
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+
+.product__discount__item__pic {
+    flex-grow: 1; /* Chiếm không gian còn lại */
+    position: relative; /* Để sử dụng cho các phần tử con */
+}
+
+.product__discount__item__text {
+    padding: 15px; /* Thêm khoảng cách cho phần thông tin sản phẩm */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+.category-title {
+    font-size: 24px; /* Kích thước chữ lớn hơn */
+    font-weight: bold; /* Chữ đậm */
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+    color: #333; /* Màu sắc chữ */
+}
+
+.category-label {
+    display: block; /* Hiển thị dưới dạng block */
+    font-size: 14px; /* Kích thước chữ nhỏ hơn */
+    color: #888; /* Màu sắc chữ nhạt hơn */
+    margin-top: 5px; /* Khoảng cách trên */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    
+
+   <!-- header -->
+   <%- include('header', { user: user }) %>
+   <!-- header -->
+
+    <!-- Product Section Begin -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Giỏ Hàng của Bạn</h1>
+    
+        <% if (error) { %>
+            <div class="alert alert-danger text-center">
+                <%= error %>
+            </div>
+        <% } %>
+    
+        <% if (cartItems.length === 0) { %>
+            <div class="alert alert-warning text-center" role="alert">
+                Giỏ hàng của bạn đang trống.
+            </div>
+            <div class="text-center mt-4">
+                <a href="/shop-grid" class="btn btn-primary">Tiếp tục mua sắm</a>
+            </div>
+        <% } else { %>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                
+                        <th>Tên Sản Phẩm</th>
+                        <th>Giá</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cartItems.forEach(item => { %>
+                        <tr>
+                            <td><%= item.name %></td>
+                            <td><%= item.formattedPrice %></td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <form action="/cart/update/<%= item.product_id %>" method="POST" class="mr-2">
+                                        <input type="hidden" name="action" value="decrease">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" <% if (item.quantity <= 1) { %> disabled <% } %>>-</button>
+                                    </form>
+                                    
+                                    <span class="mx-2" style="font-size: 1.2rem;"><%= item.quantity %></span>
+                                    
+                                    <form action="/cart/update/<%= item.product_id %>" method="POST" class="ml-2">
+                                        <input type="hidden" name="action" value="increase">
+                                        <button type="submit" class="btn btn-outline-success btn-sm">+</button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td><%= item.formattedTotal %></td>
+                            <td>
+                                <form action="/cart/remove/<%= item.product_id %>" method="POST">
+                                    <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+    
+            <h2 class="text-right">Tổng: <%= totalAmount %></h2>
+            
+            <div class="text-center mt-4">
+                <a href="/shop-grid" class="btn btn-primary">Tiếp tục mua sắm</a>
+                <a href="/cart/checkout" class="btn btn-success">Thanh Toán</a> <!-- Nút thanh toán -->
+            </div>
+    
+            <% if (success) { %>
+                <div class="alert alert-success text-center mt-4">
+                    <%= success %>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+    <!-- Product Section End -->
+
+    <!-- footer -->
+    <%- include('footer') %>
+    <!-- footer -->
+
+    <!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.nice-select.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>
+   
+</head>
+
+    

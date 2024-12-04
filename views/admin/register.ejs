@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin | Register</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="/ad_assets/bootstrap/css/bootstrap.min.css"> <!-- Đường dẫn CSS Bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/ad_assets/dist/css/AdminLTE.min.css"> <!-- Đường dẫn CSS AdminLTE -->
+  <link rel="stylesheet" href="/ad_assets/plugins/iCheck/square/blue.css"> <!-- Đường dẫn CSS iCheck -->
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <a href="/admin"><b>Admin</b></a>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg">Đăng ký</p>
+
+    <form action="/admin/register" method="post">
+      <div class="form-group has-feedback">
+          <input type="text" name="name" class="form-control" placeholder="Tên" required>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <input type="password" name="confirm_password" class="form-control" placeholder="Nhập lại Mật khẩu" required> <!-- Đã sửa lỗi chính tả từ 'comfirm_password' thành 'confirm_password' -->
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+          <div class="col-xs-8">
+              <div class="checkbox icheck">
+                  <!-- Optionally, you can add terms and conditions checkbox here -->
+              </div>
+          </div>
+          <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng ký</button>
+          </div>
+      </div>
+
+      <!-- Hiển thị thông báo lỗi nếu có -->
+      <% if (error) { %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+      <% } %>
+    </form>
+
+    <a href="/admin" class="text-center">Đăng Nhập</a>
+  </div>
+</div>
+
+<script src="/ad_assets/plugins/jQuery/jQuery-2.2.0.min.js"></script> <!-- Đường dẫn JS jQuery -->
+<script src="/ad_assets/bootstrap/js/bootstrap.min.js"></script> <!-- Đường dẫn JS Bootstrap -->
+<script src="/ad_assets/plugins/iCheck/icheck.min.js"></script> <!-- Đường dẫn JS iCheck -->
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
+</body>
+</html>
